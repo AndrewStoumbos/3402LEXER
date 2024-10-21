@@ -75,23 +75,22 @@ static void number2ast(unsigned int val)
 }
 
 %}
-
  /* you can add actual definitions below, before the %% */
-
-
+NEWLINE     \n
+CR      \r
+EOL     ({NEWLINE}|({CR}{NEWLINE}))
+COMMENTSTART %
+COMMENT {COMMENTSTART}.*
 
  /* the rules section starts after the %% below */
-
 %%
 
  /* fill in the rules for your lexer below! */
 
-/* $Id: spl_lexer_user_code.c,v 1.4 2024/10/06 18:43:01 leavens Exp leavens $ */
+{COMMENT}       { ; }
+{EOL}     { ; } //consume newline and reset for the next line
 
 %%
-
- /* This code goes in the user code section of the spl_lexer.l file,
-   following the last %% above. */
 
 // Requires: fname != NULL
 // Requires: fname is the name of a readable file
