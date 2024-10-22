@@ -108,7 +108,18 @@ ignored  [ \t\v\f\r]
 ">"               { tok2ast(gtsym); return gtsym; }
 
 {ident}           { ident2ast(yytext); return identsym; }
-{number}          { number2ast(numbersym); return numbersym; }
+{number} {
+    // Convert the matched string to a long integer
+    // Define the maximum number allowed (for example, the maximum value of a 32-bit signed int)
+    if (strlen(yytext) > 32) {
+        char message[150];
+        sprintf(message, "Number (%s) is too large!", yytext);
+        yyerror(input_filename, message);
+    } 
+    number2ast(numbersym); 
+    return numbersym;
+}
+
 
 "+"               { tok2ast(plussym); return plussym; }
 "-"               { tok2ast(minussym); return minussym; }
@@ -122,6 +133,17 @@ ignored  [ \t\v\f\r]
 "."               { tok2ast(periodsym); return periodsym; }
 "("               { tok2ast(lparensym); return lparensym; }
 ")"               { tok2ast(rparensym); return rparensym; }
+
+[\?!\"\{\}#\'_&^]   { 
+    char invalid_char = yytext[0];  // The matched character is in yytext[0]
+    char message[100];  // Buffer for the error message
+
+    // Format the error message
+    sprintf(message, "invalid character: '%c' ('\\0%o')", invalid_char, (unsigned char)*yytext);
+
+    // Call yyerror with the formatted message
+    yyerror(input_filename, message);
+}
 
 [ \t\n]+          { ; }/* Ignore whitespace */
 "%"[^\n]*         { ; }/* Ignore comments */
