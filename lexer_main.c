@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     }
 
     // Initialize with  input file
-    lexer_init(input_file, argv[1]);
+    lexer_init(input_file);
 
     // Call the lexer output 
     lexer_output();
