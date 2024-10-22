@@ -84,44 +84,44 @@ ignored  [ \t\v\f\r]
 %%
 {ignored}         { ; }
 
-"const"           {tok2ast(constsym); return constsym;}
-"var"             {tok2ast(varsym); return varsym;}
-"proc"            {tok2ast(procsym); return procsym;}
-"call"            {tok2ast(callsym); return callsym;}
-"begin"           {tok2ast(beginsym); return beginsym;}
-"end"             {tok2ast(endsym); return endsym;}
-"if"              {tok2ast(ifsym); return ifsym;}
-"then"            {tok2ast(thensym); return thensym;}
-"else"            {tok2ast(elsesym); return elsesym;}
-"while"           {tok2ast(whilesym); return whilesym;}
-"do"              {tok2ast(dosym); return dosym;}
-"read"            {tok2ast(readsym); return readsym;}
-"print"           {tok2ast(printsym); return printsym;}
-"divisible"       {tok2ast(divisiblesym); return divisiblesym;}
-"by"              {tok2ast(bysym); return bysym;}
+"const"           { tok2ast(constsym); return constsym; }
+"var"             { tok2ast(varsym); return varsym; }
+"proc"            { tok2ast(procsym); return procsym; }
+"call"            { tok2ast(callsym); return callsym; }
+"begin"           { tok2ast(beginsym); return beginsym; }
+"end"             { tok2ast(endsym); return endsym; }
+"if"              { tok2ast(ifsym); return ifsym; }
+"then"            { tok2ast(thensym); return thensym; }
+"else"            { tok2ast(elsesym); return elsesym; }
+"while"           { tok2ast(whilesym); return whilesym; }
+"do"              { tok2ast(dosym); return dosym; }
+"read"            { tok2ast(readsym); return readsym; }
+"print"           { tok2ast(printsym); return printsym; }
+"divisible"       { tok2ast(divisiblesym); return divisiblesym; }
+"by"              { tok2ast(bysym); return bysym; }
 
-"=="              {tok2ast(eqeqsym); return eqeqsym;}
-"!="              {tok2ast(neqsym); return neqsym;}
-"<="              {tok2ast(leqsym); return leqsym;}
-">="              {tok2ast(geqsym); return geqsym;}
-"<"               {tok2ast(ltsym); return ltsym;}
-">"               {tok2ast(gtsym); return gtsym;}
+"=="              { tok2ast(eqeqsym); return eqeqsym; }
+"!="              { tok2ast(neqsym); return neqsym; }
+"<="              { tok2ast(leqsym); return leqsym; }
+">="              { tok2ast(geqsym); return geqsym; }
+"<"               { tok2ast(ltsym); return ltsym; }
+">"               { tok2ast(gtsym); return gtsym; }
 
-{ident}           {ident2ast(identsym); return identsym;}
-{number}          {number2ast(identsym); return numbersym;}
+{ident}           { ident2ast(yytext); return identsym; }
+{number}          { number2ast(numbersym); return numbersym; }
 
-"+"               {tok2ast(plussym); return plussym;}
-"-"               {tok2ast(minussym); return minussym;}
-"*"               {tok2ast(multsym); return multsym;}
-"/"               {tok2ast(divsym); return divsym;}
+"+"               { tok2ast(plussym); return plussym; }
+"-"               { tok2ast(minussym); return minussym; }
+"*"               { tok2ast(multsym); return multsym; }
+"/"               { tok2ast(divsym); return divsym; }
 
-";"               {tok2ast(semisym); return semisym;}
-"="               {tok2ast(eqsym); return eqsym;}
-":="              {tok2ast(becomessym); return becomessym;}
-","               {tok2ast(commasym); return commasym;}
-"."               {tok2ast(persiodsym); return periodsym;}
-"("               {tok2ast(lparensym); return lparensym;}
-")"               {tok2ast(rparensym); return rparensym;}
+";"               { tok2ast(semisym); return semisym; }
+"="               { tok2ast(eqsym); return eqsym; }
+":="              { tok2ast(becomessym); return becomessym; }
+","               { tok2ast(commasym); return commasym; }
+"."               { tok2ast(periodsym); return periodsym; }
+"("               { tok2ast(lparensym); return lparensym; }
+")"               { tok2ast(rparensym); return rparensym; }
 
 [ \t\n]+          { ; }/* Ignore whitespace */
 "%"[^\n]*         { ; }/* Ignore comments */
